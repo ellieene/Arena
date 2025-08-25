@@ -9,29 +9,24 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "fights")
+@Table(name = "waiting_users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Fight {
+public class WaitingUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
-    private String playersOne;
+    @Column(nullable = false, unique = true)
+    private String username;
 
     @Column(nullable = false)
-    private String playersTwo;
+    private int lvl;
 
     @Column(nullable = false)
-    private String exercise;
-
-    @Column(nullable = false)
-    private long createdAt = System.currentTimeMillis();
-
-
-    private String winner;
+    private long joinedAt; // timestamp, для таймаутов
 }
+
